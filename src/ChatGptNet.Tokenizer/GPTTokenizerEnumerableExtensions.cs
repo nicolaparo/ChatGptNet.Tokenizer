@@ -1,6 +1,6 @@
 ﻿namespace ChatGptNet.Tokenizer
 {
-    internal static class GPTTokenizerEnumerableExtensions
+    internal static class GptTokenizerEnumerableExtensions
     {
         public static Dictionary<TFirst, TSecond> ToDictionary<TFirst, TSecond>(this IEnumerable<(TFirst, TSecond)> collection) where TFirst : notnull
         {

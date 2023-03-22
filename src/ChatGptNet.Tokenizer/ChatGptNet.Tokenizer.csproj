@@ -16,21 +16,24 @@
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/nicolaparo/ChatGptNet.Tokenizer.git</RepositoryUrl>
     <RepositoryBranch>main</RepositoryBranch>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+    <Version>1.0.3</Version>
+    <AssemblyVersion>1.0.3</AssemblyVersion>
+    <FileVersion>1.0.3</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ChatGptNet" Version="1.1.4" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="gpt_tokenizer_encoder.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Update="gpt_tokenizer_vocab.bpe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Pack>true</Pack>
+      <PackagePath>gpt_tokenizer_vocab.bpe;content</PackagePath>
     </None>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <None Include="..\..\README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
 </Project>

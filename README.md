@@ -24,7 +24,7 @@ using var encodingStream = File.OpenRead(@"path/to/encodings.json");
 
 var tokenizer = await GptTokenizer.CreateTokenizerAsync(vocabStream, encodingsStream);
 ```
-The default `vocab.bpe` and `encodings.json` are already included in this library as `gpt_tokenizer_vocab.bpe` and `gpt_tokenizer_encodings.json`.
+The default `vocab.bpe` and `encodings.json` are already included in this library.
 
 ## Usage
 
