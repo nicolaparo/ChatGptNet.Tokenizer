@@ -1,11 +1,18 @@
 # ChatGPT Tokenizer for .NET
 
+[![NuGet](https://img.shields.io/nuget/v/ChatGptNet.Tokenizer.svg?style=flat-square)](https://www.nuget.org/packages/ChatGptNet.Tokenizer)
+
 A ChatGPT tokenizer implementation for .NET.
 You can use this library to estimate the cost (in terms of tokens) of your request to ChatGPT.
 
+## Installation
+
+The library is available on [NuGet](https://www.nuget.org/packages/ChatGptNet.Tokenizer). Just search for *ChatGptNet.Tokenizer* in the **Package Manager GUI** or run the following command in the **.NET CLI**:
+
+    dotnet add package ChatGptNet.Tokenizer
+
 ## About
 This is a C# implementation of OpenAI's original python encoder/decoder which can be found [here](https://github.com/openai/gpt-2). This implementation was strongly inspired from the JavaScript version created by latitudegames, that can be found [here](https://github.com/latitudegames/GPT-3-Encoder).
-
 
 ## Setup
 
