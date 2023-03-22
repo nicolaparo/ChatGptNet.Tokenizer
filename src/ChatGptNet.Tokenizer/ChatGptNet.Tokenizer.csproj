@@ -12,12 +12,12 @@
     <Description>ChatGPT Tokenizer and Token Estimator for .NET</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/nicolaparo/ChatGptNet.Tokenizer</PackageProjectUrl>
-    <PackageIcon>Chat.png</PackageIcon>   
     <PackageTags>csharp net openai openai-api chatgpt</PackageTags>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/nicolaparo/ChatGptNet.Tokenizer.git</RepositoryUrl>
     <RepositoryBranch>main</RepositoryBranch>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
   </PropertyGroup>
 
   <ItemGroup>

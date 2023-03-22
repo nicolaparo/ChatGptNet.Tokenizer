@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace ChatGptNet.Tokenizer
 {
 
-    public enum GPTTokenizerType
+    public enum GptTokenizerType
     {
         Gpt3,
         Codex

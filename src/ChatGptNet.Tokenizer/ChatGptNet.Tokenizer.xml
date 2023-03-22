@@ -4,7 +4,7 @@
         <name>ChatGptNet.Tokenizer</name>
     </assembly>
     <members>
-        <member name="M:ChatGptNet.Tokenizer.GPTTokenizer.GetBpeParserRegex">
+        <member name="M:ChatGptNet.Tokenizer.GptTokenizer.GetBpeParserRegex">
             <remarks>
             Pattern explanation:<br/>
             <code>
@@ -299,30 +299,30 @@
             </code>
             </remarks>
         </member>
-        <member name="M:ChatGptNet.Tokenizer.GPTTokenizer.CreateTokenizerAsync(ChatGptNet.Tokenizer.GPTTokenizerType)">
+        <member name="M:ChatGptNet.Tokenizer.GptTokenizer.CreateTokenizerAsync(ChatGptNet.Tokenizer.GptTokenizerType)">
             <summary>
             Creates a new tokenizer, by asynchronously loading the default resources
             </summary>
-            <param name="tokenizerType">Type for the tokenizer (Default <see cref="F:ChatGptNet.Tokenizer.GPTTokenizerType.Gpt3"/></param>
-            <returns>A new <see cref="T:ChatGptNet.Tokenizer.GPTTokenizer"/> initialized with the default data</returns>
+            <param name="tokenizerType">Type for the tokenizer (Default <see cref="F:ChatGptNet.Tokenizer.GptTokenizerType.Gpt3"/></param>
+            <returns>A new <see cref="T:ChatGptNet.Tokenizer.GptTokenizer"/> initialized with the default data</returns>
         </member>
-        <member name="M:ChatGptNet.Tokenizer.GPTTokenizer.CreateTokenizerAsync(System.IO.Stream,System.IO.Stream,ChatGptNet.Tokenizer.GPTTokenizerType)">
+        <member name="M:ChatGptNet.Tokenizer.GptTokenizer.CreateTokenizerAsync(System.IO.Stream,System.IO.Stream,ChatGptNet.Tokenizer.GptTokenizerType)">
             <summary>
             Creates a new tokenizer, by asynchronously loading the required resources
             </summary>
             <param name="bpeVocabStream">A stream containing a valid "vocab.bpe" file</param>
             <param name="encoderJsonStream">A stream containing a valid "encodings.json" file</param>
-            <param name="tokenizerType">Type for the tokenizer (Default <see cref="F:ChatGptNet.Tokenizer.GPTTokenizerType.Gpt3"/></param>
-            <returns>A new <see cref="T:ChatGptNet.Tokenizer.GPTTokenizer"/> initialized with the supplied data</returns>
+            <param name="tokenizerType">Type for the tokenizer (Default <see cref="F:ChatGptNet.Tokenizer.GptTokenizerType.Gpt3"/></param>
+            <returns>A new <see cref="T:ChatGptNet.Tokenizer.GptTokenizer"/> initialized with the supplied data</returns>
         </member>
-        <member name="M:ChatGptNet.Tokenizer.GPTTokenizer.GetTokens(System.String)">
+        <member name="M:ChatGptNet.Tokenizer.GptTokenizer.GetTokens(System.String)">
             <summary>
             Converts a text to its GPT token representation.
             </summary>
             <param name="text">The text to convert</param>
             <returns>The GPT token sequence representing the supplied text</returns>
         </member>
-        <member name="M:ChatGptNet.Tokenizer.GPTTokenizer.GetTextFromTokens(System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:ChatGptNet.Tokenizer.GptTokenizer.GetTextFromTokens(System.Collections.Generic.IEnumerable{System.Int32})">
             <summary>
             Converts a GPT Token sequence to its text representation
             </summary>

@@ -8,7 +8,7 @@ namespace ChatGptTokenizerConsole
     {
         static async Task Main(string[] args)
         {
-            var tokenizer = await GPTTokenizer.CreateTokenizerAsync();
+            var tokenizer = await GptTokenizer.CreateTokenizerAsync();
 
             while (true)
             {
