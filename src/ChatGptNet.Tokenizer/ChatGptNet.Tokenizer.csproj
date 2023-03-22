@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <DocumentationFile>ChatGptNet.Tokenizer.xml</DocumentationFile>
+    <Authors>Nicola Paro</Authors>
+    <Company>Nicola Paro</Company>
+    <Product>ChatGPT Tokenizer and Token Estimator for ChatGptNet</Product>
+    <Title>ChatGPT Tokenizer and Token Estimator for ChatGptNet</Title>
+    <Description>ChatGPT Tokenizer and Token Estimator for .NET</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/nicolaparo/ChatGptNet.Tokenizer</PackageProjectUrl>
+    <PackageIcon>Chat.png</PackageIcon>   
+    <PackageTags>csharp net openai openai-api chatgpt</PackageTags>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/nicolaparo/ChatGptNet.Tokenizer.git</RepositoryUrl>
+    <RepositoryBranch>main</RepositoryBranch>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ChatGptNet" Version="1.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="gpt_tokenizer_encoder.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="gpt_tokenizer_vocab.bpe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
