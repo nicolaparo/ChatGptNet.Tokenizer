@@ -4,6 +4,11 @@
         <name>ChatGptNet.Tokenizer</name>
     </assembly>
     <members>
+        <member name="T:ChatGptNet.Tokenizer.GptTokenizer">
+            <summary>
+            Rapresents an tokenizer for converting the text into a sequence of tokens.
+            </summary>
+        </member>
         <member name="M:ChatGptNet.Tokenizer.GptTokenizer.GetBpeParserRegex">
             <remarks>
             Pattern explanation:<br/>
@@ -298,6 +303,18 @@
                 ○ Match a character in the set [\t-\r \u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000\uFEFF] atomically at least once.<br/>
             </code>
             </remarks>
+        </member>
+        <member name="M:ChatGptNet.Tokenizer.GptTokenizer.GetGpt3TokenizerAsync">
+            <summary>
+            Returns the singleton instance for the Gpt3 Tokenizer
+            </summary>
+            <returns>The singleton instance for the tokenizer</returns>
+        </member>
+        <member name="M:ChatGptNet.Tokenizer.GptTokenizer.GetCodexTokenizerAsync">
+            <summary>
+            Returns the singleton instance for the Codex tokenizer
+            </summary>
+            <returns>The singleton instance for the tokenizer</returns>
         </member>
         <member name="M:ChatGptNet.Tokenizer.GptTokenizer.CreateTokenizerAsync(ChatGptNet.Tokenizer.GptTokenizerType)">
             <summary>

@@ -1,6 +1,9 @@
 ﻿using ChatGptNet.Tokenizer;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using ChatGptNet;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace ChatGptTokenizerConsole
 {
@@ -8,36 +11,24 @@ namespace ChatGptTokenizerConsole
     {
         static async Task Main(string[] args)
         {
-            var tokenizer = await GptTokenizer.CreateTokenizerAsync();
+            var host = Host.CreateDefaultBuilder().ConfigureServices(ConfigureServices)
+                .Build();
 
-            while (true)
-            {
-                Console.Write("Ask me anything: ");
-                var message = Console.ReadLine();
+            var application = host.Services.GetRequiredService<Application>();
+            await application.ExecuteAsync();
 
-                if (string.IsNullOrWhiteSpace(message))
-                    return;
-
-                var tokens = tokenizer.GetTokens(message);
-                var tokensCount = tokens.Length;
-
-                Console.WriteLine(JsonSerializer.Serialize(tokens));
-
-                ConsoleWriteTokens(tokenizer.GetTextFromTokens(tokens).ToArray());
-
-                Console.WriteLine($"If you ask to ChatGPT this, it will cost {tokensCount} tokens!");
-            }
         }
 
-        static void ConsoleWriteTokens(params string[] tokens)
+        static void ConfigureServices(HostBuilderContext context, IServiceCollection services)
         {
-            for(var i = 0; i < tokens.Length; i++) 
+            services.AddSingleton<Application>();
+
+            services.AddChatGpt(options =>
             {
-                Console.BackgroundColor = (ConsoleColor)(i % 6 + 1);
-                Console.Write(tokens[i]);
-            }
-            Console.ResetColor();
-            Console.WriteLine();
+                options.ApiKey = "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";
+                options.MessageLimit = 16;
+                options.MessageExpiration = TimeSpan.FromMinutes(5);
+            });
         }
     }
 }

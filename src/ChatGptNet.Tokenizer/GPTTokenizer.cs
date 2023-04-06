@@ -5,6 +5,9 @@ using System.Text.RegularExpressions;
 
 namespace ChatGptNet.Tokenizer
 {
+    /// <summary>
+    /// Rapresents an tokenizer for converting the text into a sequence of tokens.
+    /// </summary>
     public partial class GptTokenizer
     {
 #if NET7_0_OR_GREATER
@@ -30,6 +33,42 @@ namespace ChatGptNet.Tokenizer
 
         private Dictionary<(string, string), double> bpeRanks;
         private readonly Dictionary<string, string> cache;
+
+        private static GptTokenizer? _gpt3Tokenizer;
+        private static SemaphoreSlim _gpt3Semaphore = new(1, 1);
+        private static GptTokenizer? _codexTokenizer;
+        private static SemaphoreSlim _codexSemaphore = new(1, 1);
+
+        /// <summary>
+        /// Returns the singleton instance for the Gpt3 Tokenizer
+        /// </summary>
+        /// <returns>The singleton instance for the tokenizer</returns>
+        public static async Task<GptTokenizer> GetGpt3TokenizerAsync()
+        {
+            await _gpt3Semaphore.WaitAsync();
+            if (_gpt3Tokenizer is null)
+            {
+                _gpt3Tokenizer = await CreateTokenizerAsync();
+            }
+            _gpt3Semaphore.Release();
+            return _gpt3Tokenizer;
+        }
+
+        /// <summary>
+        /// Returns the singleton instance for the Codex tokenizer
+        /// </summary>
+        /// <returns>The singleton instance for the tokenizer</returns>
+        public static async Task<GptTokenizer> GetCodexTokenizerAsync()
+        {
+            await _codexSemaphore.WaitAsync();
+            if (_codexTokenizer is null)
+            {
+                _codexTokenizer = await CreateTokenizerAsync(GptTokenizerType.Codex);
+            }
+            _codexSemaphore.Release();
+            return _codexTokenizer;
+        }
+
 
         /// <summary>
         /// Creates a new tokenizer, by asynchronously loading the default resources
@@ -109,7 +148,7 @@ namespace ChatGptNet.Tokenizer
                     {
                         if (i + j <= mergedSpacesCount)
                         {
-                            bpeMerges.Add((Enumerable.Repeat('\u0120', i).JoinStrings(), Enumerable.Repeat('\u0120', j).JoinStrings()));
+                            bpeMerges.Add((new string('\u0120', i), new string('\u0120', j)));
                         }
                     }
                 }
@@ -137,7 +176,7 @@ namespace ChatGptNet.Tokenizer
 
         private static IEnumerable<int> CreateRange(int start, int end)
         {
-            while (start < end)
+            while (start <= end)
             {
                 yield return start;
                 start++;
@@ -146,9 +185,9 @@ namespace ChatGptNet.Tokenizer
 
         private Dictionary<int, char> CreateBytesToUnicodeMap()
         {
-            var byteValues = CreateRange('!', '~' + 1)
-                .Concat(CreateRange('\xa1', '\xac' + 1))
-                .Concat(CreateRange('\xae', '\xff' + 1))
+            var byteValues = CreateRange('!', '~')
+                .Concat(CreateRange('\xa1', '\xac'))
+                .Concat(CreateRange('\xae', '\xff'))
                 .ToList();
 
             var charset = byteValues.ToList();
@@ -160,7 +199,7 @@ namespace ChatGptNet.Tokenizer
                 {
                     byteValues.Add(byteValue);
                     charset.Add(256 + n);
-                    n = n + 1;
+                    n++;
                 }
             }
 

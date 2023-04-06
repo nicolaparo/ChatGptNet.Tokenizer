@@ -3,7 +3,7 @@
 [![NuGet](https://img.shields.io/nuget/v/ChatGptNet.Tokenizer.svg?style=flat-square)](https://www.nuget.org/packages/ChatGptNet.Tokenizer)
 
 A ChatGPT tokenizer implementation for .NET.
-You can use this library to estimate the cost (in terms of tokens) of your request to ChatGPT.
+You can use this library to estimate the cost (amount of tokens) of your request to ChatGPT.
 
 ## Installation
 
@@ -41,6 +41,21 @@ var tokens = tokenizer.GetTokens(@"Lorem ipsum dolor sit amet")
 
 var tokensCount = tokens.Length;
 var tokensAsText = tokenizer.GetTextFromTokens(tokens);
+```
+
+## Integration with ChatGptNet
+This package extends the [ChatGptNet NuGet package](https://www.nuget.org/packages/ChatGptNet) (source: https://github.com/marcominerva/ChatGptNet) by providing some functionalities for estimating the token amount.
+```csharp
+public async Task Estimate(IChatGptClient chatGptClient)
+{
+    var conversationId = Guid.NewGuid();
+
+    chatGptClient.EstimateConversationTokenCountAsync("first message");
+    chatGptClient.EstimateConversationTokenCountAsync(conversationId);
+    chatGptClient.EstimateConversationTokenCountAsync(conversationId, "next message");
+}
+
+
 ```
 
 
