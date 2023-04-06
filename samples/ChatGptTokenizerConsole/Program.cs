@@ -25,7 +25,7 @@ namespace ChatGptTokenizerConsole
 
             services.AddChatGpt(options =>
             {
-                options.ApiKey = "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";
+                options.ApiKey = "";
                 options.MessageLimit = 16;
                 options.MessageExpiration = TimeSpan.FromMinutes(5);
             });
